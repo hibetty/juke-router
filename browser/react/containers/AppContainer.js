@@ -23,6 +23,7 @@ export default class AppContainer extends Component {
     this.prev = this.prev.bind(this);
     this.selectAlbum = this.selectAlbum.bind(this);
     this.deselectAlbum = this.deselectAlbum.bind(this);
+    this.selectArtist = this.selectArtist.bind(this);
   }
 
   componentDidMount () {
@@ -108,6 +109,14 @@ export default class AppContainer extends Component {
     this.setState({ selectedAlbum: {}});
   }
 
+  selectArtist (artistId) {
+    axios.get(`/api/artists/${artistId}`)
+      .then(res => res.data)
+      .then(artist => this.setState({
+        selectedArtist: artist
+      }));
+  }
+
   render () {
     return (
       <div id="main" className="container-fluid">
@@ -116,7 +125,7 @@ export default class AppContainer extends Component {
         </div>
         <div className="col-xs-10">
         {
-          this.props.children ? React.cloneElement(this.props.children, {artists: this.state.artists, album: this.state.selectedAlbum, currentSong: this.state.currentSong, isPlaying: this.state.isPlaying, toggleOne: this.toggleOne, albums: this.state.albums, selectAlbum: this.selectAlbum }) : null
+          this.props.children ? React.cloneElement(this.props.children, {selectArtist: this.selectArtist, selectedArtist: this.state.selectedArtist, artists: this.state.artists, album: this.state.selectedAlbum, currentSong: this.state.currentSong, isPlaying: this.state.isPlaying, toggleOne: this.toggleOne, albums: this.state.albums, selectAlbum: this.selectAlbum }) : null
         }
         </div>
         <Player
