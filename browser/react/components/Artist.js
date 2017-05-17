@@ -30,8 +30,8 @@ export default class Artist extends React.Component {
 			<div>
 			  <h3>{artist.name}</h3>
         <ul className="nav nav-tabs">
-          <li><Link to={`/artists/:artistId/albums`}>ALBUMS</Link></li>
-          <li><Link to={`/artists/:artistId/songs`}>SONGS</Link></li>
+          <li><Link to={`/artists/${artist.id}/albums`} activeClassName="active">ALBUMS</Link></li>
+          <li><Link to={`/artists/${artist.id}/songs`} activeClassName="active">SONGS</Link></li>
         </ul>
         { children && React.cloneElement(children, propsToPassToChildren) }
 

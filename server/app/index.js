@@ -29,6 +29,11 @@ app.use(function (req, res, next) {
 
 });
 
+app.use(function(req, res){
+	res.sendFile(__dirname + '/index.html');
+})
+
+
 app.get('/*', function (req, res) {
     res.sendFile(app.get('indexHTMLPath'));
 });
