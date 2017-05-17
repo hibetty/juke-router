@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Songs from './Songs';
+import Albums from './Albums';
 
 export default class Artist extends React.Component {
   componentDidMount(){
@@ -12,12 +14,20 @@ export default class Artist extends React.Component {
 
 	render(){
     const artist = this.props.selectedArtist;
+    const albums = this.props.artistAlbums;
+    const songs = this.props.artistSongs;
+    const currentSong = this.props.currentSong;
 
 		return (
 			<div>
 			  <h3>{artist.name}</h3>
-			  <h4>ALBUMS</h4>
-			  <h4>SONGS</h4>
+
+        <Albums albums={albums} />
+        <Songs songs={songs}
+          currentSong={currentSong}
+          isPlaying={this.props.isPlaying}
+          toggleOne={this.props.toggleOne} />
+
 			</div>
 			)
 	}

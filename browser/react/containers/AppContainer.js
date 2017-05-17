@@ -115,6 +115,18 @@ export default class AppContainer extends Component {
       .then(artist => this.setState({
         selectedArtist: artist
       }));
+
+    axios.get(`/api/artists/${artistId}/albums`)
+      .then(res => res.data)
+      .then(artistAlbums => this.setState({
+         artistAlbums: convertAlbums(artistAlbums)
+        }));
+
+    axios.get(`/api/artists/${artistId}/songs`)
+      .then(res => res.data)
+      .then(allArtistSongs => this.setState({
+        artistSongs: allArtistSongs
+      }));
   }
 
   render () {
@@ -125,7 +137,7 @@ export default class AppContainer extends Component {
         </div>
         <div className="col-xs-10">
         {
-          this.props.children ? React.cloneElement(this.props.children, {selectArtist: this.selectArtist, selectedArtist: this.state.selectedArtist, artists: this.state.artists, album: this.state.selectedAlbum, currentSong: this.state.currentSong, isPlaying: this.state.isPlaying, toggleOne: this.toggleOne, albums: this.state.albums, selectAlbum: this.selectAlbum }) : null
+          this.props.children ? React.cloneElement(this.props.children, {selectArtist: this.selectArtist, selectedArtist: this.state.selectedArtist, artists: this.state.artists, album: this.state.selectedAlbum, currentSong: this.state.currentSong, isPlaying: this.state.isPlaying, toggleOne: this.toggleOne, albums: this.state.albums, selectAlbum: this.selectAlbum, artistAlbums: this.state.artistAlbums, artistSongs: this.state.artistSongs }) : null
         }
         </div>
         <Player
