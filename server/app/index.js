@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(function(req, res){
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile('/Users/Betty/Desktop/Grace-Hopper/Junior-Phase/Week-5/juke-router/browser/index.html');
 })
 
 

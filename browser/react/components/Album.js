@@ -18,6 +18,9 @@ export default class Album extends React.Component {
     return (
       <div className="album">
         <div>
+          <button className="btn btn-default" onClick={toggle}>
+            <span className="glyphicon glyphicon-share"></span>
+          </button>
           <h3>{ album.name }</h3>
           <img src={ album.imageUrl } className="img-thumbnail" />
         </div>
